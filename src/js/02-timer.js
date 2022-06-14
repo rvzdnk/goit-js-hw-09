@@ -31,8 +31,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDate) {
-    const todayDate = new Date();
-    if (selectedDate[0] <= todayDate) {
+    if (selectedDate[0] <= new Date()) {
       lockBtn(startBtn);
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
@@ -54,16 +53,16 @@ function countdownTime () {
 timer = setInterval(() =>{
 lockBtn(startBtn);
 
-const chosenDate = Number(new Date(dateChooser.value).getTime());
-const currentDate = Number(new Date().getTime());
+const chosenDate = new Date(dateChosen.value.replace(/-/g, '/')).getTime();
+const currentDate = new Date().getTime();
 const timeLeft = chosenDate - currentDate;
 
 const {days, hours, minutes, seconds} = convertMs(timeLeft);
 
-dataDays.innerHTML = days < 10 ? addLeadingZero(days) : days;
-dataHours.innerHTML = hours < 10 ? addLeadingZero(hours) : hours;
-dataMinutes.innerHTML = minutes < 10 ? addLeadingZero(minutes) : minutes;
-dataSeconds.innerHTML = seconds < 10 ? addLeadingZero(seconds) : seconds;
+dataDays.innerHTML = days < 2 ? addLeadingZero(days) : days;
+dataHours.innerHTML = hours < 2 ? addLeadingZero(hours) : hours;
+dataMinutes.innerHTML = minutes < 2 ? addLeadingZero(minutes) : minutes;
+dataSeconds.innerHTML = seconds < 2 ? addLeadingZero(seconds) : seconds;
 
 if (timeLeft < 1000) {
     clearInterval(timer);
