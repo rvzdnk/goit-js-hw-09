@@ -53,7 +53,7 @@ function countdownTime () {
 timer = setInterval(() =>{
 lockBtn(startBtn);
 
-const chosenDate = new Date(dateChosen.value.replace(/-/g, '/')).getTime();
+const chosenDate = new Date(dateChooser.value.replace(/-/g, '/')).getTime();
 const currentDate = new Date().getTime();
 const timeLeft = chosenDate - currentDate;
 
